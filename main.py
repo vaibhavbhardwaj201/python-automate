@@ -1,26 +1,3 @@
-# Hello,
-# I hope you are doing well. As of now, I'm sending my python script to automate the ParaBank website.
-# If you want I can also write the same script in C#/.Net, please let me know.
-# As of now, I'm learning UiPath and will do the same task in UiPath as well before the technical interview and will send you.
-# If I get a chance, I would love to show you same automation with UiPath.
-
-
-# This is a simple Selenium script that automates the following tasks and handles the edge cases as well:
-# 1. Register a new user on the ParaBank website or login if the username already exists
-# 2. Open a new account
-# 3. Transfer funds to the newly created account
-# The script is written in Python and uses the Selenium WebDriver library, I chose python as of now but we also use C#, .Net
-# Before running the script, make sure you have the following installed:
-# 1. Python
-# 2. Chrome browser
-# 3. ChromeDriver
-# 4. Selenium WebDriver for Python
-# 5. WebDriver Manager for Python
-# You can install the required libraries using pip:
-# pip install selenium webdriver-manager
-# To run the script, execute the following command:
-# python3 main.py or python main.py
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -110,7 +87,8 @@ try:
         Select(account_type_dropdown).select_by_visible_text("SAVINGS")
 
         time.sleep(2)
-        driver.find_element(By.XPATH, "//input[@value='Open New Account']").click()
+        WebDriverWait(driver, 30).until(EC.element_to_be_clickable((By.XPATH, "//input[@value='Open New Account']"))).click()
+        # driver.find_element(By.XPATH, "//input[@value='Open New Account']").click()
 
         time.sleep(2)
         account_number_text = wait.until(EC.visibility_of_element_located((By.ID, "newAccountId")))
